@@ -1,68 +1,82 @@
 
 // vocal, drum, bass, and other are volumes ranging from 0 to 100
-let firstRun = true
 
-let Snail = [];
+
+let Run = [];
 let imageIndex = 0;
-let frameDelay = 5;
+let frameDelay = 25;
 let frameCounter = 0;
 
+let firstRun = true;
 
-
+let palette = [
+  [20,20,54],
+  [16,35,48],
+  [31,25,54],
+  [18,57,163],
+  [26,20,69]
+];
 
 function draw_one_frame(words, vocal, drum, bass, other, counter) {
-  //if (firstRun) {
-    //rectMode(CENTER);
-    //Snail.push(loadImage('Run_Frame1.png'));
-    //Snail.push(loadImage('Run_Frame2.png'));
-    //Snail.push(loadImage('Run_Frame3.png'));
-    //Snail.push(loadImage('Run_Frame4.png'));      
-    //Snail.push(loadImage('Run_Frame5.png'));
-    //Snail.push(loadImage('Run_Frame6.png'));
-    //Snail.push(loadImage('Run_Frame7.png'));
-    //Snail.push(loadImage('Run_Frame8.png'));
-    //Snail.push(loadImage('Run_Frame9.png'));
-    //Snail.push(loadImage('Run_Frame10.png'));
-    //Snail.push(loadImage('Run_Frame11.png'));
-    //Snail.push(loadImage('Run_Frame12.png'));
 
-
-    //firstRun = false
-  //}
-
-
-  background(5);
-  rectMode(CENTER);
-
- for (let i = 1; i < 12; i++)  {
-      Snail.push(loadImage('Run_Frame' + i + '.png'));
+  //background(0,0,100);
+  
+if (drum > 50) {  // adjust threshold (0–100)
+    let c = random(palette);
+    background(c[0], c[1], c[2]);
+  } else {
+    background(0,0,69); // default dark background
   }
 
 
 
-if (Snail.length > 0) {
-    image(Snail[imageIndex], width/110, height/140);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//section 2 of music visualizer
+  //background(0,0,100);
+  rectMode(CENTER);
+
+if (firstRun) {
+ for (let i = 1; i < 12; i++)  {
+      Run.push(loadImage('run/Run_Frame' + i + '.png'));
+  }
+  firstRun = false;
+
+}
+
+if (Run.length > 0) {
+    image(Run[imageIndex], width/110, height/140);
   }
 
   frameCounter++;
   if (frameCounter >= frameDelay) {
     imageIndex++;
-    if (imageIndex >= Snail.length) {
+    if (imageIndex >= Run.length) {
       imageIndex = 0;
     }
     frameCounter = 0;
   }
 
-  frameDelay = map(drum, 0, 100, 10, 2);
-
-  //var VocalFrame = int(map(vocal, 0,100, 0,11));
-
-  //console.log(VocalFrame);
-  //push();
-  //scale(0.5);
-  //image(Snail[VocalFrame], width/2, height/2)
-  //pop();
-
-   
+  frameDelay = map(bass, 0, 100, 10, 2);
    
 }
